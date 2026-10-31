@@ -41,6 +41,7 @@ That downloads 木's KanjiVG file and writes `brush-木.html`. It also accepts a
 | `--reading`, `--meaning` | Text for the subtitle |
 | `--captions FILE` | HTML fragment placed under the sheet, such as a list describing each stroke |
 | `--note TEXT` | Replaces the simulation disclaimer in the footer |
+| `--ink #rrggbb` | Ink color; default near-black, `#b8321a` for vermilion |
 
 ## Layout
 

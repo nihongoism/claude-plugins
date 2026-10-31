@@ -67,11 +67,13 @@ const S=[
 ["㇏", "M54.5,39c4.62,6,23,25.75,31.76,34.61c2.27,2.29,4.61,4.39,7.49,5.64"]
 ];
 // Brush size (half-width in KanjiVG's 109-unit square), speed in units per ms, pause between strokes in ms.
-const CFG={base:3.5,speed:0.075,gap:380};
+const CFG={base:3.5,speed:0.075,gap:380,ink:"#141414"};
 // Brush model, shared by the 木 and 靄 pages. Each stroke is a filled outline: the KanjiVG
 // centerline offset on both sides by a half-width that follows the stroke type, plus brush
 // footprints where the brush presses (entry, corners, hook, stop), then dry-brush streaks cut out.
-const TAU=Math.PI*2,TIP=-Math.PI*.75,STEP=.25,DR=[Math.SQRT1_2,Math.SQRT1_2],INK="#141414";
+const TAU=Math.PI*2,TIP=-Math.PI*.75,STEP=.25,DR=[Math.SQRT1_2,Math.SQRT1_2],INK=CFG.ink||"#141414";
+// Edge bleed is the ink at half strength, so a colored ink blurs into its own tint.
+const INK_EDGE=(h=>{const n=parseInt(h.slice(1),16);return`rgba(${n>>16&255},${n>>8&255},${n&255},.5)`})(INK);
 const smooth=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
 const angDiff=(a,b)=>{let d=a-b;while(d>Math.PI)d-=TAU;while(d<-Math.PI)d+=TAU;return d};
 function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let x=Math.imul(seed^seed>>>15,1|seed);x=x+Math.imul(x^x>>>7,61|x)^x;return((x^x>>>14)>>>0)/4294967296}}
@@ -250,7 +252,7 @@ function paper(){
   }
 }
 // Ink is not quite opaque, so crossings darken a little, and its edge bleeds slightly into the paper.
-function inkOnto(g){g.save();g.globalAlpha=.97;g.shadowColor="rgba(20,20,20,.5)";g.shadowBlur=1.1*dpr;g.drawImage(layer,0,0);g.restore()}
+function inkOnto(g){g.save();g.globalAlpha=.97;g.shadowColor=INK_EDGE;g.shadowBlur=1.1*dpr;g.drawImage(layer,0,0);g.restore()}
 function paint(st,k){lctx.clearRect(0,0,layer.width,layer.height);renderStroke(lctx,st,k,scale)}
 function show(){ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(done,0,0)}
 function count(txt){if(countEl)countEl.textContent=txt}
