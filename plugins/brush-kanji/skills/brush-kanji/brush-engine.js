@@ -1,7 +1,9 @@
-// Brush model, shared by the 木 and 靄 pages. Each stroke is a filled outline: the KanjiVG
-// centerline offset on both sides by a half-width that follows the stroke type, plus brush
-// footprints where the brush presses (entry, corners, hook, stop), then dry-brush streaks cut out.
-const TAU=Math.PI*2,TIP=-Math.PI*.75,STEP=.25,DR=[Math.SQRT1_2,Math.SQRT1_2],INK=CFG.ink||"#141414";
+// Brush model. build.py inlines this file into every page after the page has declared S (the
+// strokes) and CFG (base, speed, gap, ink); it reads CFG.ink at load, so that order is required.
+// Each stroke is a filled outline: the KanjiVG centerline offset on both sides by a half-width
+// that follows the stroke type, plus brush footprints where the brush presses (entry, corners,
+// hook, stop), then dry-brush streaks cut out.
+const TAU=Math.PI*2,TIP=-Math.PI*.75,STEP=.25,DR=[Math.SQRT1_2,Math.SQRT1_2],INK=CFG.ink;
 // Edge bleed is the ink at half strength, so a colored ink blurs into its own tint.
 const INK_EDGE=(h=>{const n=parseInt(h.slice(1),16);return`rgba(${n>>16&255},${n>>8&255},${n&255},.5)`})(INK);
 const smooth=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
