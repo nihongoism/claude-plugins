@@ -19,4 +19,4 @@ Plugins from [Nihongoism](https://nihongoism.com), the newsletter that explores 
 
 ## License
 
-Each plugin carries its own license file; all are MIT unless its file says otherwise. The Nihongoism name and wordmark are not covered by those licenses.
+MIT; see [LICENSE](LICENSE), which also says how a plugin's own license file relates to it.

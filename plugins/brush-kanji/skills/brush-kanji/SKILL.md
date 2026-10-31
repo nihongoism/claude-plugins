@@ -11,7 +11,7 @@ description: >
 ---
 # Brush Kanji
 
-Produces an HTML page that animates a character brushed onto hanshi paper, one stroke at a time, with a **Brush again** button and optional guide lines. The brushwork is simulated on top of KanjiVG centerlines; the rules below say what the simulation imitates and why. 木 (4 strokes) and 靄 (24 strokes) are the reference examples; both are in the repository's `examples/` folder.
+Produces an HTML page that animates a character brushed onto hanshi paper, one stroke at a time, with a **Brush again** button and optional guide lines. The brushwork is simulated on top of KanjiVG centerlines; the rules below say what the simulation imitates and why. 木 (4 strokes) and 靄 (24 strokes) are the reference examples; both are in the plugin's `examples/` folder.
 
 ## Workflow
 
