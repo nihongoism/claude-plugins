@@ -1,0 +1,12 @@
+{
+  "name": "nihongoism",
+  "owner": { "name": "Nihongoism", "url": "https://nihongoism.com" },
+  "description": "Plugins from Nihongoism, the newsletter that explores Japanese one word at a time.",
+  "plugins": [
+    {
+      "name": "brush-kanji",
+      "source": "./",
+      "description": "Draws a kanji the way a brush writes it, stroke by stroke, from KanjiVG data."
+    }
+  ]
+}
