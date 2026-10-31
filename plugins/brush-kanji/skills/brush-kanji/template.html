@@ -11,7 +11,7 @@
    Colors and type follow the Nihongoism brand: brick #98342C accents, body text #441111,
    Alegreya headings, Inter body. Deliberately one look in both themes: ink on paper. */
 :root{
-  --desk:#e3cbbf; --paper:#fffaf3; --ink:#141414; --text:#441111; --muted:#7f6342; --guide:#e3cbbf;
+  --desk:#e3cbbf; --paper:#fffaf3; --text:#441111; --muted:#7f6342; --guide:#e3cbbf;
   --brick:#98342c; --brick-dark:#7e2b24;
   --kanji:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
   --heading:"Alegreya",Georgia,serif;
@@ -61,7 +61,7 @@ footer{display:grid;gap:10px;border-top:1px solid var(--guide);padding-top:14px}
 // KanjiVG stroke type and centerline for each stroke, in writing order.
 const S={{STROKES}};
 // Brush size (half-width in KanjiVG's 109-unit square), speed in units per ms, pause between strokes in ms.
-const CFG={base:{{BASE}},speed:{{SPEED}},gap:{{GAP}}};
+const CFG={base:{{BASE}},speed:{{SPEED}},gap:{{GAP}},ink:"{{INK}}"};
 {{ENGINE}}
 </script>
 </body>

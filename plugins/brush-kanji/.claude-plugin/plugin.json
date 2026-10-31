@@ -1,6 +1,6 @@
 {
   "name": "brush-kanji",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Draws a kanji the way a brush writes it: an animated page that brushes the character stroke by stroke onto paper, built on KanjiVG stroke data. From Nihongoism.",
   "author": { "name": "Nihongoism", "url": "https://nihongoism.com" },
   "homepage": "https://nihongoism.com",

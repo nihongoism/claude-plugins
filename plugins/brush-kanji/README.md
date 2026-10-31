@@ -41,6 +41,7 @@ That downloads 木's KanjiVG file and writes `brush-木.html`. It also accepts a
 | `--reading`, `--meaning` | Text for the subtitle |
 | `--captions FILE` | HTML fragment placed under the sheet, such as a list describing each stroke |
 | `--note TEXT` | Replaces the simulation disclaimer in the footer |
+| `--ink #rrggbb` | Ink color; default near-black, `#b8321a` for vermilion |
 
 ## Layout
 
@@ -53,6 +54,7 @@ skills/brush-kanji/
   template.html        the page shell, in Nihongoism colors and type
   nihongoism-logo.svg  the wordmark, inlined into the page footer
 examples/              built pages for 木 and 靄
+tests/                 build.py tests: python plugins/brush-kanji/tests/test_build.py
 ```
 
 Shape changes belong in `brush-engine.js`, so every character benefits.

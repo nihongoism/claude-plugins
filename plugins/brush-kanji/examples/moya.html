@@ -11,7 +11,7 @@
    Colors and type follow the Nihongoism brand: brick #98342C accents, body text #441111,
    Alegreya headings, Inter body. Deliberately one look in both themes: ink on paper. */
 :root{
-  --desk:#e3cbbf; --paper:#fffaf3; --ink:#141414; --text:#441111; --muted:#7f6342; --guide:#e3cbbf;
+  --desk:#e3cbbf; --paper:#fffaf3; --text:#441111; --muted:#7f6342; --guide:#e3cbbf;
   --brick:#98342c; --brick-dark:#7e2b24;
   --kanji:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
   --heading:"Alegreya",Georgia,serif;
@@ -87,11 +87,15 @@ const S=[
 ["㇄", "M54.71,77.31c0.59,0.3,0.94,1.35,1.06,1.94c0.11,0.54-1.02,7.5-1.41,11.83c-0.11,1.22,0.48,2,2.1,1.86c3.77-0.32,15.34-1.46,21.93-1.87c1.44-0.09,2.59,0.25,3.3,0.25"]
 ];
 // Brush size (half-width in KanjiVG's 109-unit square), speed in units per ms, pause between strokes in ms.
-const CFG={base:1.8,speed:0.1,gap:200};
-// Brush model, shared by the 木 and 靄 pages. Each stroke is a filled outline: the KanjiVG
-// centerline offset on both sides by a half-width that follows the stroke type, plus brush
-// footprints where the brush presses (entry, corners, hook, stop), then dry-brush streaks cut out.
-const TAU=Math.PI*2,TIP=-Math.PI*.75,STEP=.25,DR=[Math.SQRT1_2,Math.SQRT1_2],INK="#141414";
+const CFG={base:1.8,speed:0.1,gap:200,ink:"#141414"};
+// Brush model. build.py inlines this file into every page after the page has declared S (the
+// strokes) and CFG (base, speed, gap, ink); it reads CFG.ink at load, so that order is required.
+// Each stroke is a filled outline: the KanjiVG centerline offset on both sides by a half-width
+// that follows the stroke type, plus brush footprints where the brush presses (entry, corners,
+// hook, stop), then dry-brush streaks cut out.
+const TAU=Math.PI*2,TIP=-Math.PI*.75,STEP=.25,DR=[Math.SQRT1_2,Math.SQRT1_2],INK=CFG.ink;
+// Edge bleed is the ink at half strength, so a colored ink blurs into its own tint.
+const INK_EDGE=(h=>{const n=parseInt(h.slice(1),16);return`rgba(${n>>16&255},${n>>8&255},${n&255},.5)`})(INK);
 const smooth=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
 const angDiff=(a,b)=>{let d=a-b;while(d>Math.PI)d-=TAU;while(d<-Math.PI)d+=TAU;return d};
 function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let x=Math.imul(seed^seed>>>15,1|seed);x=x+Math.imul(x^x>>>7,61|x)^x;return((x^x>>>14)>>>0)/4294967296}}
@@ -270,7 +274,7 @@ function paper(){
   }
 }
 // Ink is not quite opaque, so crossings darken a little, and its edge bleeds slightly into the paper.
-function inkOnto(g){g.save();g.globalAlpha=.97;g.shadowColor="rgba(20,20,20,.5)";g.shadowBlur=1.1*dpr;g.drawImage(layer,0,0);g.restore()}
+function inkOnto(g){g.save();g.globalAlpha=.97;g.shadowColor=INK_EDGE;g.shadowBlur=1.1*dpr;g.drawImage(layer,0,0);g.restore()}
 function paint(st,k){lctx.clearRect(0,0,layer.width,layer.height);renderStroke(lctx,st,k,scale)}
 function show(){ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(done,0,0)}
 function count(txt){if(countEl)countEl.textContent=txt}

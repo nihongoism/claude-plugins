@@ -23,6 +23,7 @@ HERE = Path(__file__).resolve().parent
 KANJIVG_URL = "https://raw.githubusercontent.com/KanjiVG/kanjivg/master/kanji/{:05x}.svg"
 ATTRIBUTION = ('Stroke data from <a href="https://kanjivg.tagaini.net/">KanjiVG</a>, '
                '<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.')
+DEFAULT_INK = "#141414"
 DEFAULT_NOTE = ("A simulation: brush shape, pressure and dry-brush texture are modeled on the KanjiVG "
                 "centerlines and stroke types, not traced from a calligrapher's work.")
 
@@ -81,7 +82,10 @@ def main():
     ap.add_argument("--gap", type=int, help="ms between strokes (default 380 up to 8 strokes, else 200)")
     ap.add_argument("--captions", type=Path, help="HTML fragment placed under the sheet")
     ap.add_argument("--note", help="replace the default simulation note (the KanjiVG attribution stays)")
+    ap.add_argument("--ink", default=DEFAULT_INK, help="ink color as #rrggbb (default near-black; #b8321a is vermilion)")
     a = ap.parse_args()
+    if not re.fullmatch(r"#[0-9a-fA-F]{6}", a.ink):
+        ap.error("--ink must be a six-digit hex color such as #b8321a")
 
     kanji, svg = read_source(a.source)
     strokes = parse_strokes(svg)
@@ -117,6 +121,7 @@ def main():
             .replace("{{BASE}}", repr(base))
             .replace("{{SPEED}}", repr(speed))
             .replace("{{GAP}}", str(gap))
+            .replace("{{INK}}", a.ink.lower())
             .replace("{{ENGINE}}", engine))
     out.write_text(page, encoding="utf-8", newline="\n")
     print(f"{kanji}: {n} strokes, base {base}, speed {speed}, gap {gap} -> {out}")
