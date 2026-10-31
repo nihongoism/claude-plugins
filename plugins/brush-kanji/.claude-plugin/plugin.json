@@ -4,7 +4,7 @@
   "description": "Draws a kanji the way a brush writes it: an animated page that brushes the character stroke by stroke onto paper, built on KanjiVG stroke data. From Nihongoism.",
   "author": { "name": "Nihongoism", "url": "https://nihongoism.com" },
   "homepage": "https://nihongoism.com",
-  "repository": "https://github.com/apperceptive/brush-kanji",
+  "repository": "https://github.com/nihongoism/claude-plugins",
   "license": "MIT",
   "icon": "./.claude-plugin/icon.png",
   "keywords": ["kanji", "calligraphy", "shodo", "kanjivg", "japanese", "nihongoism"]

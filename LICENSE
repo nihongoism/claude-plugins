@@ -22,12 +22,7 @@ SOFTWARE.
 
 ---
 
-The stroke data this software downloads and embeds in the pages it generates
-comes from KanjiVG (https://kanjivg.tagaini.net/), copyright Ulrich Apel,
-licensed under the Creative Commons Attribution-Share Alike 3.0 license
-(https://creativecommons.org/licenses/by-sa/3.0/). Generated pages carry that
-attribution in their footer; keep it when you share them.
+Individual plugins under plugins/ may carry a LICENSE file with additional
+notes on third-party data they use; those notes apply to that plugin.
 
-The Nihongoism name and wordmark (skills/brush-kanji/nihongoism-logo.svg) are
-not covered by the MIT license. Keep them on pages this software generates;
-do not use them to mark your own work.
+The Nihongoism name and wordmark are not covered by this license.

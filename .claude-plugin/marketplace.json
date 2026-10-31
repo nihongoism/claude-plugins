@@ -5,7 +5,7 @@
   "plugins": [
     {
       "name": "brush-kanji",
-      "source": "./",
+      "source": "./plugins/brush-kanji",
       "description": "Draws a kanji the way a brush writes it, stroke by stroke, from KanjiVG data."
     }
   ]
