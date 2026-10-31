@@ -13,7 +13,7 @@ Open [`examples/ki.html`](examples/ki.html) (木, 4 strokes) or [`examples/moya.
 As a Claude Code plugin:
 
 ```
-/plugin marketplace add rtm/brush-kanji
+/plugin marketplace add apperceptive/brush-kanji
 /plugin install brush-kanji@nihongoism
 ```
 
