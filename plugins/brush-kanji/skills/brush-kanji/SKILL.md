@@ -23,11 +23,11 @@ python "${CLAUDE_SKILL_DIR}/build.py" 木 --out ki-brush.html --reading ki --mea
 
 Given a single character, the script downloads its KanjiVG file from GitHub. When there is no network, or a stroke-order MCP has already returned the data, pass a file instead: a KanjiVG SVG, or a JSON file with `character` and `svg` fields (the `svg` holds `<path>` elements in writing order, each with a `kvg:type` stroke symbol and a `d` centerline in a 109 × 109 square). Save MCP output verbatim to a file in the working folder and pass that path.
 
-Options: `--base` (brush half-width, see Scale below), `--speed`, `--gap`, `--captions file.html` (an HTML fragment under the sheet: an `<ol>` describing each stroke for a simple character, or a `<dl>` naming the components and their stroke ranges for a dense one, as the 靄 example does), `--note` to replace the simulation disclaimer. The KanjiVG attribution in the footer always stays. The script inlines `template.html` and `brush-engine.js`, so the output is a single self-contained file.
+Options: `--base` (brush half-width, see Scale below), `--speed`, `--gap`, `--captions file.html` (an HTML fragment under the sheet: an `<ol>` describing each stroke for a simple character, or a `<dl>` naming the components and their stroke ranges for a dense one, as the 靄 example does), `--note` to replace the simulation disclaimer, `--ink #rrggbb` for a colored ink (`#b8321a` is vermilion; the edge bleed follows the color). The KanjiVG attribution in the footer always stays. The script inlines `template.html` and `brush-engine.js`, so the output is a single self-contained file.
 
-### 2. Look at it before showing it
+### 2. Look at it only when there is reason to
 
-Open the file in a browser and screenshot it with the animation finished (reduced motion or a second or two of waiting). Check it against the Pitfalls table. The usual adjustment is `--base`: strokes merging means too large, wiry strokes mean too small. Replay to check the rhythm.
+The default brush size is a formula from the stroke count and has held from 4 to 24 strokes, so a routine character goes straight to delivery. Check the page in a browser first only when the character is unusually dense or unusual in shape (a long-tailed or heavily nested form), when `--base` was set by hand, or when the user asks for a check: open the file, wait for the animation to finish, screenshot it, and compare it with the Pitfalls table. Strokes merging means `--base` is too large, wiry strokes mean too small.
 
 ### 3. Deliver
 
